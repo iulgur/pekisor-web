@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Peki Soru – Deep Conversation Cards</title>
+  <meta name="description" content="Peki Soru – Start real conversations. 800+ questions, 5 languages, 13 categories. Free · Ad-free · Personal." />
+  <meta property="og:title" content="Peki Soru – Deep Conversation Cards" />
+  <meta property="og:description" content="Start real conversations with 800+ questions in 5 languages." />
+  <meta property="og:url" content="https://pekisor.app" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --purple: #6B4FBB;
+      --purple-light: #A594F9;
+      --purple-dark: #4A3490;
+      --bg: #F0EDF8;
+      --bg-dark: #0D0D12;
+      --surface: #FFFFFF;
+      --text: #1A1228;
+      --muted: #A99CC4;
+      --border: #D4CCE8;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 16px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(240, 237, 248, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--purple);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--purple); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 120px 32px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -200px; right: -200px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(107,79,187,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -100px; left: -100px;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(165,148,249,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      max-width: 1100px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .hero-text { animation: fadeUp 0.8s ease both; }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(107,79,187,0.08);
+      border: 1px solid rgba(107,79,187,0.2);
+      border-radius: 100px;
+      padding: 6px 14px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--purple);
+      letter-spacing: 0.5px;
+      margin-bottom: 24px;
+      text-transform: uppercase;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(40px, 5vw, 64px);
+      font-weight: 700;
+      line-height: 1.1;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--purple);
+    }
+
+    .hero-subtitle-tr {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(18px, 2.5vw, 26px);
+      font-style: italic;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    .hero-desc {
+      font-size: 17px;
+      line-height: 1.7;
+      color: #4A3D6E;
+      margin-bottom: 12px;
+      font-weight: 300;
+    }
+
+    .hero-desc-tr {
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--muted);
+      margin-bottom: 36px;
+      font-weight: 300;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+
+    .btn-store {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 24px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .btn-store:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(107,79,187,0.25);
+    }
+
+    .btn-ios {
+      background: var(--purple);
+      color: white;
+    }
+
+    .btn-android {
+      background: var(--surface);
+      color: var(--purple);
+      border: 1.5px solid var(--border);
+    }
+
+    .btn-store svg { width: 20px; height: 20px; flex-shrink: 0; }
+
+    .hero-stats {
+      display: flex;
+      gap: 32px;
+    }
+
+    .stat {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .stat-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--purple);
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* PHONE MOCKUP */
+    .hero-visual {
+      display: flex;
+      justify-content: center;
+      animation: fadeUp 0.8s 0.2s ease both;
+    }
+
+    .phone-wrap {
+      position: relative;
+      width: 280px;
+    }
+
+    .phone {
+      width: 280px;
+      height: 560px;
+      background: var(--bg-dark);
+      border-radius: 40px;
+      border: 2px solid rgba(255,255,255,0.08);
+      box-shadow:
+        0 40px 80px rgba(107,79,187,0.3),
+        0 0 0 1px rgba(107,79,187,0.1),
+        inset 0 1px 0 rgba(255,255,255,0.05);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .phone-notch {
+      position: absolute;
+      top: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 24px;
+      background: rgba(0,0,0,0.8);
+      border-radius: 12px;
+      z-index: 10;
+    }
+
+    .phone-screen {
+      padding: 52px 16px 20px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .screen-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 4px;
+    }
+
+    .screen-exit {
+      font-size: 10px;
+      color: rgba(165,148,249,0.7);
+      background: rgba(165,148,249,0.1);
+      border: 1px solid rgba(165,148,249,0.2);
+      border-radius: 8px;
+      padding: 4px 8px;
+    }
+
+    .screen-dots {
+      display: flex;
+      gap: 4px;
+    }
+
+    .screen-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: rgba(165,148,249,0.3);
+    }
+
+    .screen-dot.active {
+      background: #A594F9;
+    }
+
+    .screen-cat {
+      font-size: 10px;
+      color: #A594F9;
+      background: rgba(165,148,249,0.1);
+      border: 1.5px solid #A594F9;
+      border-radius: 8px;
+      padding: 4px 8px;
+    }
+
+    .screen-card {
+      flex: 1;
+      background: #16161E;
+      border-radius: 18px;
+      border: 1.5px solid #A594F9;
+      border-left-width: 4px;
+      padding: 20px 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .screen-category-label {
+      font-size: 9px;
+      color: rgba(165,148,249,0.5);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .screen-question {
+      font-family: 'Playfair Display', serif;
+      font-size: 15px;
+      font-style: italic;
+      color: #F0EDF8;
+      text-align: center;
+      line-height: 1.5;
+    }
+
+    .screen-share {
+      font-size: 10px;
+      color: #A594F9;
+      background: rgba(165,148,249,0.08);
+      border: 1px solid rgba(165,148,249,0.2);
+      border-radius: 8px;
+      padding: 5px 12px;
+      align-self: center;
+    }
+
+    .screen-footer {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .screen-heart {
+      width: 36px;
+      height: 36px;
+      background: #16161E;
+      border: 1px solid #2D2840;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+    }
+
+    .screen-btn {
+      flex: 1;
+      height: 36px;
+      background: #A594F9;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      color: #0D0D12;
+    }
+
+    .screen-spark {
+      width: 36px;
+      height: 36px;
+      background: #16161E;
+      border: 1px solid #2D2840;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+    }
+
+    .phone-glow {
+      position: absolute;
+      bottom: -40px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 200px;
+      height: 80px;
+      background: radial-gradient(ellipse, rgba(107,79,187,0.4) 0%, transparent 70%);
+      filter: blur(20px);
+      pointer-events: none;
+    }
+
+    /* FEATURES */
+    .features {
+      padding: 100px 32px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      text-align: center;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--purple);
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 4vw, 44px);
+      text-align: center;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .section-title-tr {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(18px, 2.5vw, 28px);
+      font-style: italic;
+      text-align: center;
+      color: var(--muted);
+      margin-bottom: 60px;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .feature-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 32px 28px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(107,79,187,0.12);
+    }
+
+    .feature-icon {
+      font-size: 32px;
+      margin-bottom: 16px;
+    }
+
+    .feature-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .feature-title-tr {
+      font-size: 13px;
+      font-style: italic;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .feature-desc {
+      font-size: 14px;
+      line-height: 1.6;
+      color: #4A3D6E;
+      font-weight: 300;
+    }
+
+    /* CATEGORIES */
+    .categories {
+      background: var(--bg-dark);
+      padding: 100px 32px;
+    }
+
+    .categories-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .categories .section-label { color: var(--purple-light); }
+    .categories .section-title { color: #F0EDF8; }
+    .categories .section-title-tr { color: rgba(165,148,249,0.6); }
+
+    .cat-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-top: 48px;
+    }
+
+    .cat-card {
+      background: #16161E;
+      border: 1px solid #2D2840;
+      border-radius: 14px;
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: border-color 0.2s;
+    }
+
+    .cat-card:hover { border-color: var(--purple-light); }
+
+    .cat-icon { font-size: 22px; }
+
+    .cat-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: #F0EDF8;
+    }
+
+    .cat-name-tr {
+      font-size: 11px;
+      color: rgba(165,148,249,0.6);
+      margin-top: 2px;
+    }
+
+    /* LANGUAGES */
+    .languages {
+      padding: 100px 32px;
+      max-width: 1100px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .lang-flags {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-top: 48px;
+    }
+
+    .lang-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px 28px;
+      min-width: 100px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .lang-item:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(107,79,187,0.1);
+    }
+
+    .lang-flag { font-size: 32px; }
+    .lang-name { font-size: 13px; font-weight: 600; color: var(--text); }
+
+    /* QUOTE */
+    .quote-section {
+      background: var(--purple);
+      padding: 80px 32px;
+      text-align: center;
+    }
+
+    .quote-text {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(20px, 3vw, 32px);
+      font-style: italic;
+      color: white;
+      max-width: 800px;
+      margin: 0 auto 12px;
+      line-height: 1.5;
+    }
+
+    .quote-text-tr {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(14px, 2vw, 20px);
+      font-style: italic;
+      color: rgba(255,255,255,0.65);
+      max-width: 700px;
+      margin: 0 auto 24px;
+    }
+
+    .quote-founder {
+      font-size: 13px;
+      color: rgba(255,255,255,0.7);
+      font-weight: 500;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    /* CTA */
+    .cta-section {
+      padding: 100px 32px;
+      text-align: center;
+    }
+
+    .cta-section .hero-cta { justify-content: center; }
+
+    .cta-note {
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 16px;
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--bg-dark);
+      padding: 48px 32px;
+      text-align: center;
+    }
+
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--purple-light);
+      margin-bottom: 16px;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      list-style: none;
+      margin-bottom: 24px;
+    }
+
+    .footer-links a {
+      font-size: 13px;
+      color: rgba(165,148,249,0.6);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--purple-light); }
+
+    .footer-copy {
+      font-size: 12px;
+      color: rgba(165,148,249,0.3);
+    }
+
+    /* PRIVACY PAGE */
+    .privacy-section {
+      display: none;
+      max-width: 800px;
+      margin: 120px auto 80px;
+      padding: 0 32px;
+    }
+
+    .privacy-section h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 40px;
+      color: var(--purple);
+      margin-bottom: 8px;
+    }
+
+    .privacy-section .updated {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 40px;
+    }
+
+    .privacy-section h2 {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text);
+      margin: 32px 0 12px;
+    }
+
+    .privacy-section p, .privacy-section li {
+      font-size: 15px;
+      line-height: 1.7;
+      color: #4A3D6E;
+      font-weight: 300;
+    }
+
+    .privacy-section ul { padding-left: 20px; }
+    .privacy-section li { margin-bottom: 8px; }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav { padding: 14px 20px; }
+      .nav-links { display: none; }
+      .hero-inner { grid-template-columns: 1fr; gap: 48px; }
+      .hero-visual { order: -1; }
+      .phone-wrap { transform: scale(0.85); }
+      .features-grid { grid-template-columns: 1fr; }
+      .cat-grid { grid-template-columns: repeat(2, 1fr); }
+      .hero-stats { gap: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo" onclick="showMain()">Peki Soru</a>
+  <ul class="nav-links">
+    <li><a href="#features">Features</a></li>
+    <li><a href="#categories">Categories</a></li>
+    <li><a href="#" onclick="showPrivacy(); return false;">Privacy</a></li>
+    <li><a href="mailto:ilyasulgur@gmail.com">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- MAIN CONTENT -->
+<div id="main-content">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <div class="hero-badge">✦ New · Yeni</div>
+        <h1 class="hero-title">Start <em>real</em><br>conversations.</h1>
+        <p class="hero-subtitle-tr">Gerçek sohbetlere başla.</p>
+        <p class="hero-desc">800+ carefully crafted questions across 13 categories. For couples, families, friends — anyone who wants to go deeper.</p>
+        <p class="hero-desc-tr">13 kategoride 800'den fazla soru. Çiftler, aileler, arkadaşlar için.</p>
+        <div class="hero-cta">
+          <a href="#" class="btn-store btn-ios">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+            App Store
+          </a>
+          <a href="#" class="btn-store btn-android">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.523 15.341l1.394 2.415c.175.303.072.69-.232.866-.303.175-.69.072-.866-.232L16.37 15.95c-.772.385-1.636.6-2.538.6s-1.766-.215-2.538-.6L9.84 18.39c-.175.304-.563.407-.866.232-.304-.175-.407-.563-.232-.866L10.136 15.34C8.67 14.348 7.758 12.9 7.758 11.285v-.271h8.484v.271c0 1.615-.913 3.063-2.719 4.056zM12 3.192l1.04-1.8c.175-.303.562-.407.865-.232.304.175.407.562.232.865L13.03 3.76c.317-.035.64-.054.97-.054s.653.019.97.054l-1.107-1.735c-.175-.303-.072-.69.232-.865.303-.175.69-.072.866.232L16 3.192c1.927.784 3.239 2.276 3.239 3.963v.271H4.761v-.271c0-1.687 1.312-3.179 3.239-3.963zM9.82 8.618c-.53 0-.96.43-.96.96s.43.96.96.96.96-.43.96-.96-.43-.96-.96-.96zm4.36 0c-.53 0-.96.43-.96.96s.43.96.96.96.96-.43.96-.96-.43-.96-.96-.96z"/></svg>
+            Google Play
+          </a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat">
+            <span class="stat-number">800+</span>
+            <span class="stat-label">Questions · Soru</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">5</span>
+            <span class="stat-label">Languages · Dil</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">13</span>
+            <span class="stat-label">Categories · Kategori</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="phone-wrap">
+          <div class="phone">
+            <div class="phone-notch"></div>
+            <div class="phone-screen">
+              <div class="screen-header">
+                <div class="screen-exit">← Exit</div>
+                <div class="screen-dots">
+                  <div class="screen-dot active"></div>
+                  <div class="screen-dot"></div>
+                  <div class="screen-dot"></div>
+                  <div class="screen-dot"></div>
+                </div>
+                <div class="screen-cat">🕯️ Phil ▾</div>
+              </div>
+              <div class="screen-card">
+                <div class="screen-category-label">PHILOSOPHICAL</div>
+                <div class="screen-question">"If you lost all your memories, would you still be the same 'you'?"</div>
+                <div class="screen-share">↗ Share</div>
+              </div>
+              <div class="screen-footer">
+                <div class="screen-heart">🤍</div>
+                <div class="screen-btn">Next Question</div>
+                <div class="screen-spark">✨</div>
+              </div>
+            </div>
+          </div>
+          <div class="phone-glow"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features" id="features">
+    <p class="section-label">Why Peki Soru · Neden Peki Soru</p>
+    <h2 class="section-title">Conversations that matter.</h2>
+    <p class="section-title-tr">Önemli sohbetler.</p>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">💬</div>
+        <div class="feature-title">Go Deeper</div>
+        <div class="feature-title-tr">Derinleşin</div>
+        <p class="feature-desc">Move beyond small talk. Our questions are designed to spark genuine connection between people who matter to each other.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🌍</div>
+        <div class="feature-title">5 Languages</div>
+        <div class="feature-title-tr">5 Dil</div>
+        <p class="feature-desc">Turkish, English, German, French and Spanish. The same depth of conversation, wherever you are in the world.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">❤️</div>
+        <div class="feature-title">Save Favorites</div>
+        <div class="feature-title-tr">Favorilere Ekle</div>
+        <p class="feature-desc">Heart the questions that resonate most. Build your own personal collection and play from your favorites anytime.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">↗️</div>
+        <div class="feature-title">Share Beautifully</div>
+        <div class="feature-title-tr">Güzel Paylaş</div>
+        <p class="feature-desc">Every question becomes a shareable card. Send to friends, post to stories — start conversations everywhere.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🎯</div>
+        <div class="feature-title">13 Categories</div>
+        <div class="feature-title-tr">13 Kategori</div>
+        <p class="feature-desc">From philosophical to silly, from couples to kids. There's a category for every mood, every group, every moment.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">✦</div>
+        <div class="feature-title">Free & Ad-free</div>
+        <div class="feature-title-tr">Ücretsiz & Reklamsız</div>
+        <p class="feature-desc">No ads. No tracking. No noise. Just you and the people you care about — and the questions that bring you closer.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATEGORIES -->
+  <section class="categories" id="categories">
+    <div class="categories-inner">
+      <p class="section-label">Categories · Kategoriler</p>
+      <h2 class="section-title">Something for every conversation.</h2>
+      <p class="section-title-tr">Her sohbet için bir kategori.</p>
+      <div class="cat-grid">
+        <div class="cat-card"><span class="cat-icon">🌿</span><div><div class="cat-name">Root Questions</div><div class="cat-name-tr">Kök Sorular</div></div></div>
+        <div class="cat-card"><span class="cat-icon">🤔</span><div><div class="cat-name">What If?</div><div class="cat-name-tr">Sen Olsaydın?</div></div></div>
+        <div class="cat-card"><span class="cat-icon">❤️</span><div><div class="cat-name">Couple & Partner</div><div class="cat-name-tr">Eş ve Partner</div></div></div>
+        <div class="cat-card"><span class="cat-icon">🍭</span><div><div class="cat-name">Light & Silly</div><div class="cat-name-tr">Hafif & Saçma</div></div></div>
+        <div class="cat-card"><span class="cat-icon">🐣</span><div><div class="cat-name">Kids</div><div class="cat-name-tr">Çocuklar</div></div></div>
+        <div class="cat-card"><span class="cat-icon">🕯️</span><div><div class="cat-name">Philosophical</div><div class="cat-name-tr">Felsefik</div></div></div>
+        <div class="cat-card"><span class="cat-icon">📜</span><div><div class="cat-name">Memory & History</div><div class="cat-name-tr">Kişisel Geçmiş</div></div></div>
+        <div class="cat-card"><span class="cat-icon">🎭</span><div><div class="cat-name">Character</div><div class="cat-name-tr">Karakter</div></div></div>
+        <div class="cat-card"><span class="cat-icon">🌈</span><div><div class="cat-name">Imagination</div><div class="cat-name-tr">Hayal Gücü</div></div></div>
+        <div class="cat-card"><span class="cat-icon">👥</span><div><div class="cat-name">Social Life</div><div class="cat-name-tr">Sosyal Hayat</div></div></div>
+        <div class="cat-card"><span class="cat-icon">🏆</span><div><div class="cat-name">Who's More?</div><div class="cat-name-tr">Kim Daha?</div></div></div>
+        <div class="cat-card"><span class="cat-icon">👫</span><div><div class="cat-name">You or Me?</div><div class="cat-name-tr">Sen mi, Ben mi?</div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LANGUAGES -->
+  <section class="languages">
+    <p class="section-label">Languages · Diller</p>
+    <h2 class="section-title">Speak your language.</h2>
+    <p class="section-title-tr">Kendi dilinde konuş.</p>
+    <div class="lang-flags">
+      <div class="lang-item"><span class="lang-flag">🇹🇷</span><span class="lang-name">Türkçe</span></div>
+      <div class="lang-item"><span class="lang-flag">🇺🇸</span><span class="lang-name">English</span></div>
+      <div class="lang-item"><span class="lang-flag">🇩🇪</span><span class="lang-name">Deutsch</span></div>
+      <div class="lang-item"><span class="lang-flag">🇫🇷</span><span class="lang-name">Français</span></div>
+      <div class="lang-item"><span class="lang-flag">🇪🇸</span><span class="lang-name">Español</span></div>
+    </div>
+  </section>
+
+  <!-- QUOTE -->
+  <section class="quote-section">
+    <p class="quote-text">"Inspired by the bond of four siblings, bringing people together through the power of AI."</p>
+    <p class="quote-text-tr">"Dört kardeşin bağından ilham alarak, yapay zekanın gücüyle insanları bir araya getiriyoruz."</p>
+    <p class="quote-founder">— Ayşe Ülgür, Visionary & Founder</p>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <p class="section-label">Download · İndir</p>
+    <h2 class="section-title">Ready to go deeper?</h2>
+    <p class="section-title-tr">Derinleşmeye hazır mısın?</p>
+    <div class="hero-cta">
+      <a href="#" class="btn-store btn-ios">
+        <svg viewBox="0 0 24 24" fill="currentColor" style="width:20px;height:20px"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+        App Store
+      </a>
+      <a href="#" class="btn-store btn-android">
+        <svg viewBox="0 0 24 24" fill="currentColor" style="width:20px;height:20px"><path d="M17.523 15.341l1.394 2.415c.175.303.072.69-.232.866-.303.175-.69.072-.866-.232L16.37 15.95c-.772.385-1.636.6-2.538.6s-1.766-.215-2.538-.6L9.84 18.39c-.175.304-.563.407-.866.232-.304-.175-.407-.563-.232-.866L10.136 15.34C8.67 14.348 7.758 12.9 7.758 11.285v-.271h8.484v.271c0 1.615-.913 3.063-2.719 4.056zM12 3.192l1.04-1.8c.175-.303.562-.407.865-.232.304.175.407.562.232.865L13.03 3.76c.317-.035.64-.054.97-.054s.653.019.97.054l-1.107-1.735c-.175-.303-.072-.69.232-.865.303-.175.69-.072.866.232L16 3.192c1.927.784 3.239 2.276 3.239 3.963v.271H4.761v-.271c0-1.687 1.312-3.179 3.239-3.963zM9.82 8.618c-.53 0-.96.43-.96.96s.43.96.96.96.96-.43.96-.96-.43-.96-.96-.96zm4.36 0c-.53 0-.96.43-.96.96s.43.96.96.96.96-.43.96-.96-.43-.96-.96-.96z"/></svg>
+        Google Play
+      </a>
+    </div>
+    <p class="cta-note">Free · Ad-free · Personal &nbsp;·&nbsp; Ücretsiz · Reklamsız · Kişisel</p>
+  </section>
+
+</div><!-- /main-content -->
+
+<!-- PRIVACY PAGE -->
+<div id="privacy-content" class="privacy-section">
+  <h1>Privacy Policy</h1>
+  <p class="updated">Last updated: March 2026</p>
+
+  <h2>1. Introduction</h2>
+  <p>Peki Soru ("we", "our", or "us") is committed to protecting your privacy. This Privacy Policy explains how we handle information when you use our mobile application.</p>
+
+  <h2>2. Data We Collect</h2>
+  <p>Peki Soru collects minimal data:</p>
+  <ul>
+    <li><strong>Language preference</strong> — stored locally on your device only</li>
+    <li><strong>Theme preference</strong> (light/dark) — stored locally on your device only</li>
+    <li><strong>Favorite questions</strong> — stored locally on your device only</li>
+  </ul>
+  <p>We do not collect personal information, location data, or usage analytics. All data remains on your device.</p>
+
+  <h2>3. Data Sharing</h2>
+  <p>We do not sell, trade, or share any user data with third parties. We have no advertising partners and display no advertisements.</p>
+
+  <h2>4. Children's Privacy</h2>
+  <p>Peki Soru includes content suitable for children (Kids category). We do not knowingly collect any data from children under 13. The app does not require account creation or personal information.</p>
+
+  <h2>5. Security</h2>
+  <p>Since all data is stored locally on your device, your information is protected by your device's own security measures.</p>
+
+  <h2>6. Changes to This Policy</h2>
+  <p>We may update this Privacy Policy from time to time. We will notify users of significant changes by updating the date at the top of this page.</p>
+
+  <h2>7. Contact</h2>
+  <p>If you have questions about this Privacy Policy, please contact us at: <strong>ilyasulgur@gmail.com</strong></p>
+
+  <h2>8. Gizlilik Politikası (Türkçe Özet)</h2>
+  <p>Peki Soru uygulaması hiçbir kişisel veri toplamaz. Dil tercihiniz, tema ayarınız ve favori sorularınız yalnızca cihazınızda yerel olarak saklanır. Reklam gösterilmez, veri paylaşılmaz.</p>
+
+  <br><br>
+  <a href="#" onclick="showMain(); return false;" style="color: var(--purple); font-weight: 600;">← Back to Home</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Peki Soru</div>
+  <ul class="footer-links">
+    <li><a href="#features">Features</a></li>
+    <li><a href="#categories">Categories</a></li>
+    <li><a href="#" onclick="showPrivacy(); return false;">Privacy Policy</a></li>
+    <li><a href="mailto:ilyasulgur@gmail.com">Contact</a></li>
+  </ul>
+  <p class="footer-copy">© 2026 Peki Soru · pekisor.app · Made with ♥ in Munich</p>
+</footer>
+
+<script>
+  function showPrivacy() {
+    document.getElementById('main-content').style.display = 'none';
+    document.getElementById('privacy-content').style.display = 'block';
+    window.scrollTo(0, 0);
+  }
+
+  function showMain() {
+    document.getElementById('main-content').style.display = 'block';
+    document.getElementById('privacy-content').style.display = 'none';
+    window.scrollTo(0, 0);
+  }
+
+  // Smooth reveal on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.feature-card, .cat-card, .lang-item').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    observer.observe(el);
+  });
+</script>
+
+</body>
+</html>
