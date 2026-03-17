@@ -701,6 +701,125 @@
     .privacy-section ul { padding-left: 20px; }
     .privacy-section li { margin-bottom: 8px; }
 
+    /* HOW TO USE */
+    .guide {
+      padding: 100px 32px;
+      background: var(--bg-dark);
+    }
+
+    .guide-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .guide .section-label { color: var(--purple-light); }
+    .guide .section-title { color: #F0EDF8; }
+    .guide .section-title-tr { color: rgba(165,148,249,0.6); }
+
+    .guide-steps {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-top: 0;
+    }
+
+    .guide-step {
+      background: #16161E;
+      border: 1px solid #2D2840;
+      border-radius: 20px;
+      padding: 28px 28px 28px 24px;
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .guide-step:hover {
+      border-color: var(--purple-light);
+      transform: translateY(-3px);
+    }
+
+    .guide-step-number {
+      flex-shrink: 0;
+      width: 40px;
+      height: 40px;
+      background: rgba(107,79,187,0.15);
+      border: 1.5px solid rgba(165,148,249,0.3);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--purple-light);
+    }
+
+    .guide-step-body { flex: 1; }
+
+    .guide-step-icon {
+      font-size: 22px;
+      margin-bottom: 8px;
+    }
+
+    .guide-step-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: #F0EDF8;
+      margin-bottom: 3px;
+    }
+
+    .guide-step-title-tr {
+      font-size: 12px;
+      font-style: italic;
+      color: rgba(165,148,249,0.55);
+      margin-bottom: 10px;
+    }
+
+    .guide-step-desc {
+      font-size: 14px;
+      line-height: 1.65;
+      color: rgba(240,237,248,0.55);
+      font-weight: 300;
+    }
+
+    .guide-tip {
+      margin-top: 48px;
+      background: rgba(107,79,187,0.12);
+      border: 1px solid rgba(165,148,249,0.2);
+      border-radius: 16px;
+      padding: 24px 28px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .guide-tip-icon {
+      font-size: 28px;
+      flex-shrink: 0;
+    }
+
+    .guide-tip-text {
+      font-size: 14px;
+      line-height: 1.6;
+      color: rgba(240,237,248,0.7);
+      font-weight: 300;
+    }
+
+    .guide-tip-text strong {
+      color: var(--purple-light);
+      font-weight: 600;
+    }
+
+    @media (max-width: 768px) {
+      .guide-steps { grid-template-columns: 1fr; }
+      .guide-tip { flex-direction: column; text-align: center; }
+    }
+
     /* ANIMATIONS */
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(24px); }
@@ -728,6 +847,7 @@
   <ul class="nav-links">
     <li><a href="#features">Features</a></li>
     <li><a href="#categories">Categories</a></li>
+    <li><a href="#how-to-use">How to Use</a></li>
     <li><a href="#" onclick="showPrivacy(); return false;">Privacy</a></li>
     <li><a href="/cdn-cgi/l/email-protection#355c594c54464059524047755258545c591b565a58">Contact</a></li>
   </ul>
@@ -883,6 +1003,84 @@
       <div class="lang-item"><span class="lang-flag">🇩🇪</span><span class="lang-name">Deutsch</span></div>
       <div class="lang-item"><span class="lang-flag">🇫🇷</span><span class="lang-name">Français</span></div>
       <div class="lang-item"><span class="lang-flag">🇪🇸</span><span class="lang-name">Español</span></div>
+    </div>
+  </section>
+
+  <!-- HOW TO USE -->
+  <section class="guide" id="how-to-use">
+    <div class="guide-inner">
+      <p class="section-label">How to Use · Nasıl Kullanılır</p>
+      <h2 class="section-title">Up and running in 30 seconds.</h2>
+      <p class="section-title-tr">30 saniyede başla.</p>
+
+      <div class="guide-steps">
+
+        <div class="guide-step">
+          <div class="guide-step-number">1</div>
+          <div class="guide-step-body">
+            <div class="guide-step-icon">🌍</div>
+            <div class="guide-step-title">Download & Choose Your Language</div>
+            <div class="guide-step-title-tr">İndir ve dilini seç</div>
+            <p class="guide-step-desc">On first launch, PekiSor detects your device language automatically. Confirm it or pick from Turkish, English, German, French, or Spanish — and you're in.</p>
+          </div>
+        </div>
+
+        <div class="guide-step">
+          <div class="guide-step-number">2</div>
+          <div class="guide-step-body">
+            <div class="guide-step-icon">🎯</div>
+            <div class="guide-step-title">Pick a Category</div>
+            <div class="guide-step-title-tr">Bir kategori seç</div>
+            <p class="guide-step-desc">Browse 13 themed categories on the home screen — from Philosophical and Root Questions to Kids and Light & Silly. Tap any card to start playing immediately.</p>
+          </div>
+        </div>
+
+        <div class="guide-step">
+          <div class="guide-step-number">3</div>
+          <div class="guide-step-body">
+            <div class="guide-step-icon">🃏</div>
+            <div class="guide-step-title">Choose Your Mode</div>
+            <div class="guide-step-title-tr">Modunu seç</div>
+            <p class="guide-step-desc"><strong style="color:var(--purple-light)">Pool</strong> — draws from the full question bank for that category. <strong style="color:var(--purple-light)">Favorites</strong> — plays back only the questions you've saved. Switch anytime at the top of the home screen.</p>
+          </div>
+        </div>
+
+        <div class="guide-step">
+          <div class="guide-step-number">4</div>
+          <div class="guide-step-body">
+            <div class="guide-step-icon">💬</div>
+            <div class="guide-step-title">Read, Reflect & Discuss</div>
+            <div class="guide-step-title-tr">Oku, düşün, konuş</div>
+            <p class="guide-step-desc">A question appears on screen. Read it aloud, take turns answering, or just let it spark a conversation. Tap <strong style="color:var(--purple-light)">Next Question</strong> whenever you're ready to move on.</p>
+          </div>
+        </div>
+
+        <div class="guide-step">
+          <div class="guide-step-number">5</div>
+          <div class="guide-step-body">
+            <div class="guide-step-icon">❤️</div>
+            <div class="guide-step-title">Save Your Favorites</div>
+            <div class="guide-step-title-tr">Favorilerine ekle</div>
+            <p class="guide-step-desc">Tap the <strong style="color:var(--purple-light)">❤️ heart button</strong> on any question to save it. All your favorites are stored privately on your device — no account needed, never shared.</p>
+          </div>
+        </div>
+
+        <div class="guide-step">
+          <div class="guide-step-number">6</div>
+          <div class="guide-step-body">
+            <div class="guide-step-icon">↗️</div>
+            <div class="guide-step-title">Share a Beautiful Card</div>
+            <div class="guide-step-title-tr">Güzel bir kart paylaş</div>
+            <p class="guide-step-desc">Tap <strong style="color:var(--purple-light)">↗ Share</strong> to generate a beautifully designed question card. Send it to a friend, post it to your story, or drop it into a group chat to start the conversation before you even meet.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="guide-tip">
+        <div class="guide-tip-icon">💡</div>
+        <p class="guide-tip-text"><strong>Pro tip:</strong> Switch your language from the Settings tab at any time — all questions, categories, and the interface update instantly. Great for multilingual families and international friend groups.</p>
+      </div>
     </div>
   </section>
 
