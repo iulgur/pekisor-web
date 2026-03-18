@@ -10,7 +10,7 @@
   <meta property="og:url" content="https://pekisor.app" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=Caveat:wght@500&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -340,12 +340,12 @@
     }
 
     .screen-question {
-      font-family: 'Playfair Display', serif;
-      font-size: 15px;
-      font-style: italic;
+      font-family: 'Caveat', cursive;
+      font-size: 19px;
+      font-weight: 500;
       color: #F0EDF8;
       text-align: center;
-      line-height: 1.5;
+      line-height: 1.45;
     }
 
     .screen-share {
@@ -399,6 +399,38 @@
       align-items: center;
       justify-content: center;
       font-size: 14px;
+    }
+
+    .screen-pool-label {
+      font-size: 9px;
+      color: rgba(165,148,249,0.4);
+      text-align: center;
+    }
+
+    .screen-tabs {
+      display: flex;
+      justify-content: space-around;
+      background: #0D0D12;
+      border-top: 1px solid #2D2840;
+      padding: 6px 0 4px;
+      margin: 0 -16px -20px;
+    }
+
+    .screen-tab {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      font-size: 9px;
+      color: rgba(165,148,249,0.4);
+    }
+
+    .screen-tab span {
+      font-size: 8px;
+    }
+
+    .screen-tab.active {
+      color: var(--purple-light);
     }
 
     .phone-glow {
@@ -929,17 +961,24 @@
                   <div class="screen-dot"></div>
                   <div class="screen-dot"></div>
                 </div>
-                <div class="screen-cat">🕯️ Phil ▾</div>
+                <div class="screen-cat">Categories ▾</div>
               </div>
               <div class="screen-card">
-                <div class="screen-category-label">PHILOSOPHICAL</div>
-                <div class="screen-question">"If you lost all your memories, would you still be the same 'you'?"</div>
-                <div class="screen-share">↗ Share</div>
+                <div class="screen-category-label">ROOT QUESTIONS</div>
+                <div class="screen-question">What was the last thing that made you cry?</div>
+                <div class="screen-share">📤 Share</div>
               </div>
               <div class="screen-footer">
                 <div class="screen-heart">🤍</div>
                 <div class="screen-btn">Next Question</div>
-                <div class="screen-spark">✨</div>
+                <div class="screen-spark">🌟</div>
+              </div>
+              <div class="screen-pool-label">Pool mode · 1 / 37</div>
+              <div class="screen-tabs">
+                <div class="screen-tab active">🏠<span>Home</span></div>
+                <div class="screen-tab">🤍<span>Favorites</span></div>
+                <div class="screen-tab">ℹ️<span>About</span></div>
+                <div class="screen-tab">⚙️<span>Settings</span></div>
               </div>
             </div>
           </div>
