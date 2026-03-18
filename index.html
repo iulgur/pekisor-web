@@ -322,7 +322,6 @@
       background: #16161E;
       border-radius: 18px;
       border: 1.5px solid #A594F9;
-      border-left-width: 4px;
       padding: 20px 16px;
       display: flex;
       flex-direction: column;
@@ -350,11 +349,18 @@
     .screen-share {
       font-size: 10px;
       color: #A594F9;
-      background: rgba(165,148,249,0.08);
-      border: 1px solid rgba(165,148,249,0.2);
-      border-radius: 8px;
-      padding: 5px 12px;
+      background: #16161E;
+      border: 1px solid #2D2840;
+      border-radius: 10px;
+      padding: 6px 20px;
       align-self: center;
+      flex-shrink: 0;
+    }
+
+    .screen-divider {
+      height: 1px;
+      background: #2D2840;
+      margin: 0 -16px;
     }
 
     .screen-footer {
@@ -965,12 +971,13 @@
               <div class="screen-card">
                 <div class="screen-category-label">ROOT QUESTIONS</div>
                 <div class="screen-question">What was the last thing that made you cry?</div>
-                <div class="screen-share">📤 Share</div>
               </div>
+              <div class="screen-share">↗ Share</div>
+              <div class="screen-divider"></div>
               <div class="screen-footer">
                 <div class="screen-heart">🤍</div>
                 <div class="screen-btn">Next Question</div>
-                <div class="screen-spark">🌟</div>
+                <div class="screen-spark">✦</div>
               </div>
               <div class="screen-pool-label">Pool mode · 1 / 37</div>
               <div class="screen-tabs">
