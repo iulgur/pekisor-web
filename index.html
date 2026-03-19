@@ -55,6 +55,15 @@
       font-weight: 700;
       color: var(--purple);
       text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
     }
 
     .nav-links {
@@ -905,7 +914,10 @@
 
 <!-- NAV -->
 <nav>
-  <a href="#" class="nav-logo" onclick="showMain()">PekiSor</a>
+  <a href="#" class="nav-logo" onclick="showMain()">
+    <img src="icon.png" alt="PekiSor" class="nav-icon" />
+    PekiSor
+  </a>
   <ul class="nav-links">
     <li><a href="#features">Features</a></li>
     <li><a href="#categories">Categories</a></li>
