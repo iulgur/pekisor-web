@@ -55,15 +55,14 @@
       font-weight: 700;
       color: var(--purple);
       text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 10px;
     }
 
-    .nav-icon {
-      width: 36px;
-      height: 36px;
-      border-radius: 8px;
+    .hero-icon {
+      width: 72px;
+      height: 72px;
+      border-radius: 16px;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 24px rgba(107,79,187,0.25);
     }
 
     .nav-links {
@@ -914,10 +913,7 @@
 
 <!-- NAV -->
 <nav>
-  <a href="#" class="nav-logo" onclick="showMain()">
-    <img src="icon.png" alt="PekiSor" class="nav-icon" />
-    PekiSor
-  </a>
+  <a href="#" class="nav-logo" onclick="showMain()">PekiSor</a>
   <ul class="nav-links">
     <li><a href="#features">Features</a></li>
     <li><a href="#categories">Categories</a></li>
@@ -934,6 +930,7 @@
   <section class="hero">
     <div class="hero-inner">
       <div class="hero-text">
+        <img src="icon.png" alt="PekiSor" class="hero-icon" />
         <div class="hero-badge">✦ New · Yeni</div>
         <h1 class="hero-title">Start <em>real</em><br>conversations.</h1>
         <p class="hero-subtitle-tr">Gerçek sohbetlere başla.</p>
